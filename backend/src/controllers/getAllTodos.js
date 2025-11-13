@@ -1,19 +1,13 @@
 import { Todo } from '../models/index.js';
+import { sendSuccess, sendError } from '../helper/response.js';
 
 export const getAllTodos = async (req, res) => {
   try {
     const todos = await Todo.findAll({
       order: [['createdAt', 'DESC']],
     });
-    res.status(200).json({
-      success: true,
-      data: todos,
-    });
+    sendSuccess(res, todos, 'Todos fetched successfully');
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error fetching todos',
-      error: error.message,
-    });
+    sendError(res, 'Failed to fetch todos');
   }
 };

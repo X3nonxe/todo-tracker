@@ -1,4 +1,5 @@
 import { Todo } from '../models/index.js';
+import { sendSuccess, sendError } from '../helper/response.js';
 
 export const deleteTodo = async (req, res, next) => {
   try {
@@ -10,8 +11,8 @@ export const deleteTodo = async (req, res, next) => {
     }
 
     await todo.destroy();
-    res.status(204).send();
+    sendSuccess(res, null, 'Todo deleted successfully');
   } catch (error) {
-    next(error);
+    sendError(res, 'Failed to delete todo');
   }
 };
