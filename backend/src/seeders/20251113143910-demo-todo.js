@@ -2,39 +2,37 @@
 
 /** @type {import('sequelize-cli').Migration} */
 export default {
-  async up (queryInterface, Sequelize) {
-    // Create demo todo items
-    await queryInterface.bulkInsert('Todos', [
-      {
-        title: 'Buy groceries',
-        description: 'Milk, Bread, Eggs, Butter',
-        completed: false,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        title: 'Walk the dog',
-        description: 'Take Fido for a walk in the park',
-        completed: false,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        title: 'Read a book',
-        description: 'Finish reading "The Great Gatsby"',
-        completed: false,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
-    ], {});
+  async up(queryInterface, Sequelize) {
+    await queryInterface.bulkInsert(
+      'Todos',
+      [
+        {
+          id: 1,
+          title: 'Setup project',
+          description: 'Initialize project repository and install dependencies',
+          completed: false,
+        },
+        {
+          id: 2,
+          title: 'Create first todo',
+          description: 'Add a new todo item to test the application',
+          completed: false,
+        }
+      ],
+      {}
+    );
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     // Remove demo todo items
-    await queryInterface.bulkDelete('Todos', {
-      title: {
-        [Sequelize.Op.in]: ['Buy groceries', 'Walk the dog', 'Read a book']
-      }
-    }, {});
-  }
+    await queryInterface.bulkDelete(
+      'Todos',
+      {
+        title: {
+          [Sequelize.Op.in]: ['Setup project', 'Create first todo'],
+        },
+      },
+      {}
+    );
+  },
 };

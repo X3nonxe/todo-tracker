@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
+import { Metadata } from 'next';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -8,9 +9,14 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
 });
 
-export const metadata = {
-  title: 'Todo Tracker',
-  description: 'A modern todo tracking application',
+export const metadat: Metadata = {
+  title: 'TodoTracker - Kelola Tugas Anda',
+  description: 'Aplikasi manajemen tugas yang beautiful dan produktif',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+    ]
+  }
 };
 
 interface RootLayoutProps {
@@ -19,7 +25,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className={montserrat.variable}>
+    <html lang="id" className={montserrat.variable}>
       <body className="text-black font-sans">{children}</body>
     </html>
   );

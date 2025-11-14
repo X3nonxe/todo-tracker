@@ -1,0 +1,1 @@
+export const FilterLabel = ({ label, isActive }: { label: string; isActive: boolean }) => <span className={`transition-all duration-300 ${isActive ? 'translate-x-1 scale-105' : 'group-hover:translate-x-1'}`}>{label}</span>;
